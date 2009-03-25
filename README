@@ -1,0 +1,16 @@
+A plugin expressly made for the purposes of being evil with view rendering.
+
+Makes it easy to render views for when you do things on facebook API like sending notifications in an after_save.
+
+class User < ActiveRecord::Base
+
+  include EvilActionView
+  after_save :notify_user
+
+  def notify_user
+    send_notification(evil.render :partial => "user_notification", :locals => self.attributes)
+  end
+end
+
+
+Also, I added a janky part controller thing.  It works, but its not very good right now
